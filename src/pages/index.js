@@ -10,7 +10,6 @@ export default function Home() {
   console.log(currentUser);
   return (
     <>
-
     {!currentUser && <Login />}
     {currentUser && <UserDashboard />}
     </>
