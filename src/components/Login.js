@@ -1,3 +1,4 @@
+import { useAuth } from "@/context/AuthContext";
 import React, {useState} from "react";
 
 const Login = () => {
@@ -6,11 +7,26 @@ const [password, setPassword] = useState("");
 const [error, setError] = useState(null);
 const [isLoggingIn, setIsLoggingIn] = useState(true)
 
-function submitHandler() {
+const { login, signUp, currentUser } = useAuth();
+
+
+async function submitHandler() {
     if (!email || !password) {
         setError('Please enter email and password')
         return
     }
+
+    if(isLoggingIn){
+      try {
+        await login(email,password);
+      } catch (err) {
+        setError("User Email or Password incorrect")
+      }
+      return 
+    }
+
+   await signUp(email,password)
+
 }
 
   return (
@@ -21,14 +37,14 @@ function submitHandler() {
         type="text"
         value={email}
         onChange={(e)=> setEmail(e.target.value)}
-        className="outline-none text-slate-900 p-2 w-full max-w-[30ch] border-b-[2px] border-white border-solid focus:border-cyan-600 duration-300 rounded"
+        className="outline-none text-slate-900 p-2 w-full max-w-[30ch] border-b-[4px] border-white border-solid focus:border-cyan-600 duration-300 rounded"
         placeholder="Email Address"
       />
       <input
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="outline-none text-slate-900 p-2 w-full max-w-[30ch] border-b-[2px] border-white border-solid focus:border-cyan-600 duration-300 rounded"
+        className="outline-none text-slate-900 p-2 w-full max-w-[30ch] border-b-[4px] border-white border-solid focus:border-cyan-600 duration-300 rounded"
         placeholder="Password"
       />
       <button className="w-full max-w-[30ch] border border-white border-solid uppercase py-2 rounded duration-300 relative after:absolute after:top-0 after:right-full after:bg-white after:z-10 after:w-full after:h-full overflow-hidden hover:after:translate-x-full after:duration-300 hover:text-slate-900" onClick={submitHandler}>
