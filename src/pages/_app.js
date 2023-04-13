@@ -6,9 +6,8 @@ export default function App({ Component, pageProps }) {
   return (
     <AuthProvider>
       <Layout>
-      <Component {...pageProps} />
-    </Layout>
+        <Component {...pageProps} />
+      </Layout>
     </AuthProvider>
-
   );
 }

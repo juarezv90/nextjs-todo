@@ -7,7 +7,6 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const {currentUser } = useAuth();
-  console.log(currentUser);
   return (
     <>
     {!currentUser && <Login />}
