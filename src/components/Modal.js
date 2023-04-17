@@ -18,7 +18,7 @@ export default function Modal(props) {
   }
 
   return ReactDOM.createPortal(
-    <div className="fixed w-[30ch] sm:w-[50ch] inset-0 bg-white text-slate-900 flex flex-col text-lg sm:text-xl">
+    <div className="fixed w-[30ch] sm:w-[50ch] inset-0 bg-white text-slate-900 flex flex-col text-lg sm:text-xl z-[200]">
       <div className="flex items-center justify-between border-b border-solid border-slate-900 p-4">
         <h1 className="font-extrabold text-2xl sm:text-4xl select-none">
           MENU
